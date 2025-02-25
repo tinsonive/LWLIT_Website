@@ -448,6 +448,52 @@
                 grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             }
         }
+        
+        /* About section styles */
+        .about-content {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .about-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .about-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .course-list {
+            margin: 30px 0;
+        }
+        
+        .course-item {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            margin-bottom: 25px;
+        }
+        
+        .course-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .course-item h4 {
+            color: #0071e3;
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .course-item p {
+            color: #555;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -466,7 +512,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand logo" href="#">Tech Academe</a>
+                    <a class="navbar-brand logo" href="#">HKIIT at IVE(LWL)</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -493,9 +539,9 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Shaping the Future of Technology</h1>
-            <p>Discover our cutting-edge IT programs designed to prepare you for the digital world</p>
-            <a href="#courses" class="btn btn-primary">Explore Courses</a>
+            <h1>HKIIT at IVE(LWL)</h1>
+            <p>we are dedicated to providing high-quality education in IT, multimedia, and entertainment technology</p>
+            <a href="#courses" class="btn btn-primary">Explore Our Courses</a>
         </div>
         <div class="news-section">
             <div class="container">
@@ -503,21 +549,21 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="news-item animate-delay-100">
-                            <span class="news-date">June 15, 2023</span>
+                            <span class="news-date">June 15, 2025</span>
                             <h4>New Cybersecurity Program Launched</h4>
                             <p>Our new advanced cybersecurity program is now open for enrollment with scholarships available.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="news-item animate-delay-200">
-                            <span class="news-date">May 28, 2023</span>
+                            <span class="news-date">May 28, 2025</span>
                             <h4>Industry Partnership with Tech Giants</h4>
                             <p>We've partnered with leading tech companies to provide internship opportunities for our students.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="news-item animate-delay-300">
-                            <span class="news-date">May 10, 2023</span>
+                            <span class="news-date">May 10, 2025</span>
                             <h4>Summer Tech Bootcamp Registration</h4>
                             <p>Register now for our intensive summer bootcamps in web development and data science.</p>
                         </div>
@@ -689,7 +735,7 @@
             <div class="row">
                 <div class="col-md-4 mb-4 mb-md-0">
                     <div class="footer-section animate-delay-100">
-                        <h3>Tech Academe</h3>
+                        <h3>HKIIT at IVE(LWL)</h3>
                         <p>Shaping the future of technology through innovative education and hands-on learning.</p>
                     </div>
                 </div>
@@ -698,6 +744,7 @@
                     <div class="footer-section animate-delay-200">
                         <h3>Quick Links</h3>
                         <a href="#home">Home</a>
+                        <a href="#about">About</a>
                         <a href="#courses">Courses</a>
                         <a href="#location">Location</a>
                         <a href="#contact">Contact</a>
@@ -707,9 +754,10 @@
                 <div class="col-md-4">
                     <div class="footer-section animate-delay-300">
                         <h3>Contact Info</h3>
-                        <p>123 Tech Avenue, Innovation District</p>
-                        <p>Phone: (123) 456-7890</p>
-                        <p>Email: info@techacademe.edu</p>
+                        <p>3 King Ling Road, Tseung Kwan O</p>
+                        <p>New Territories, Hong Kong</p>
+                        <p>Tel: (852) 3928 2000</p>
+                        <p>Email: hkiit@vtc.edu.hk</p>
                     </div>
                 </div>
             </div>
