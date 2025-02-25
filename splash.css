@@ -1,0 +1,145 @@
+/* Logo splash screen and animation styles */
+.logo-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: all 0.5s ease;
+    overflow: hidden;
+    animation: irisOut 1s ease 2s forwards;
+}
+
+.map-canvas {
+    position: absolute;
+    width: 80vw;
+    opacity: 70%;
+    height: 45vw; /* 16:9 aspect ratio */
+    max-width: 1200px;
+    max-height: 675px; /* Maintains 16:9 even at max size */
+    background-image: url('assets/hk_map.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.logo-container.hidden {
+    clip-path: circle(0% at center);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.final-logo {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.final-logo img {
+    max-width: 100%;
+    height: auto;
+    transform-origin: center;
+}
+
+.final-logo img:nth-child(1) {
+    animation: fadeInBlue 1s ease forwards;
+    opacity: 0;
+}
+
+.final-logo img:nth-child(2) {
+    animation: fadeInRed 1s ease 0.5s forwards;
+    opacity: 0;
+}
+
+.final-logo img:nth-child(3) {
+    animation: fadeInText 1s ease 1s forwards;
+    opacity: 0;
+}
+
+/* TKO Location Marker - Fixed position within the canvas */
+.map-canvas::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #0071e3;
+    border-radius: 50%;
+    /* Fixed position within the 16:9 canvas */
+    left: 68%; /* Fixed position relative to the canvas width */
+    top: 65%; /* Fixed position relative to the canvas height */
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.3);
+    animation: pulseMarker 1.5s infinite;
+}
+
+@keyframes pulseMarker {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.7);
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0 0 0 8px rgba(0, 113, 227, 0);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 113, 227, 0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInBlue {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRed {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes irisOut {
+    0% {
+        clip-path: circle(150% at center);
+    }
+    100% {
+        clip-path: circle(0% at center);
+    }
+}

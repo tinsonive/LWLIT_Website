@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HKIIT at IVE(LWL)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="splash.css" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            color: #333;
+            background-color: #f5f5f7;
+            overflow-x: hidden;
+        }
+        
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Hide scrollbar for IE, Edge and Firefox */
+        html, body {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .navbar-nav .nav-link {
+            color: white;
+            transition: color 0.3s;
+            margin-left: 20px;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: #0071e3;
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.3s;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .btn-primary {
+            background-color: #0071e3;
+            border-color: #0071e3;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0058b0;
+            border-color: #0058b0;
+            transform: scale(1.05);
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .courses {
+            background-color: white;
+            min-height: 100vh;
+        }
+        
+        .category {
+            text-align: center;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .category h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #0071e3;
+        }
+                
+        .location {
+            background-color: #f5f5f7;
+        }
+        
+        .location-text {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .location-text h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #0071e3;
+        }
+        
+        .location-text p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .map-container {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 0;
+        }
+        
+        .footer-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: #0071e3;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .animate-delay-100 { transition-delay: 0.1s; }
+        .animate-delay-200 { transition-delay: 0.2s; }
+        .animate-delay-300 { transition-delay: 0.3s; }
+        .animate-delay-400 { transition-delay: 0.4s; }
+        .animate-delay-500 { transition-delay: 0.5s; }
+        
+        /* Scroll-driven animation classes */
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-in-left {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .fade-in-right {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+        }
+        
+        .news-section {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            backdrop-filter: blur(5px);
+        }
+        
+        .news-title {
+            color: #0071e3;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .news-item {
+            border-left: 3px solid #0071e3;
+            padding-left: 15px;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateX(30px);
+            animation: fadeInRight 1s forwards;
+        }
+        
+        .news-item h4 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .news-item p {
+            color: #ccc;
+            font-size: 14px;
+        }
+        
+        .news-date {
+            color: #0071e3;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        /* Simplified Courses section styles */
+        .courses-container {
+            padding: 30px 0;
+            position: relative;
+        }
+        
+        .course-category {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .course-category.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .course-category h3 {
+            color: #0071e3;
+            font-size: 28px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #0071e3;
+            display: inline-block;
+        }
+        
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .course-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+        }
+        
+        .course-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .course-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .course-image {
+            height: 160px;
+            overflow: hidden;
+        }
+        
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .course-card:hover .course-image img {
+            transform: scale(1.05);
+        }
+        
+        .course-details {
+            padding: 15px;
+        }
+        
+        .course-code {
+            font-weight: 600;
+            color: #0071e3;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .course-title {
+            color: #333;
+            font-size: 15px;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            height: 60px;
+            overflow: hidden;
+        }
+        
+        .course-btn {
+            display: inline-block;
+            padding: 6px 16px;
+            background-color: #0071e3;
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .course-btn:hover {
+            background-color: #0058b0;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 992px) {
+            .course-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .course-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container" id="logoSplash">
+        <!-- Map canvas for Hong Kong map background -->
+        <div class="map-canvas">
+        </div>
+            <!-- Combined logo for splash screen -->
+            <div class="final-logo">
+                <img src="assets/Logo/logo_blue.png" alt="Blue Logo Part" style="position: absolute;">
+                <img src="assets/Logo/logo_red.png" alt="Red Logo Part" style="position: absolute;">
+                <img src="assets/Logo/logo_text.png" alt="Logo Text" style="position: absolute;">
+            </div>
+    </div>
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand logo" href="#">Tech Academe</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#home">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#courses">Courses</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#location">Location</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#contact">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Shaping the Future of Technology</h1>
+            <p>Discover our cutting-edge IT programs designed to prepare you for the digital world</p>
+            <a href="#courses" class="btn btn-primary">Explore Courses</a>
+        </div>
+        <div class="news-section">
+            <div class="container">
+                <h3 class="news-title">What's New</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="news-item animate-delay-100">
+                            <span class="news-date">June 15, 2023</span>
+                            <h4>New Cybersecurity Program Launched</h4>
+                            <p>Our new advanced cybersecurity program is now open for enrollment with scholarships available.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="news-item animate-delay-200">
+                            <span class="news-date">May 28, 2023</span>
+                            <h4>Industry Partnership with Tech Giants</h4>
+                            <p>We've partnered with leading tech companies to provide internship opportunities for our students.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="news-item animate-delay-300">
+                            <span class="news-date">May 10, 2023</span>
+                            <h4>Summer Tech Bootcamp Registration</h4>
+                            <p>Register now for our intensive summer bootcamps in web development and data science.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="courses">
+        <div class="container">
+            <h2 class="section-title">Our Courses</h2>
+            <div class="courses-container">
+                <div class="course-category">
+                    <h3>Full Time</h3>
+                    <div class="course-grid">
+                        <div class="course-card">
+                            <div class="course-image">
+                                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Software Engineering">
+                            </div>
+                            <div class="course-details">
+                                <div class="course-code">IT114105</div>
+                                <div class="course-title">Higher Diploma in Software Engineering</div>
+                                <a href="#" class="course-btn">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-image">
+                                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cloud and Data Centre">
+                            </div>
+                            <div class="course-details">
+                                <div class="course-code">IT114115</div>
+                                <div class="course-title">Higher Diploma in Cloud and Data Centre Administration</div>
+                                <a href="#" class="course-btn">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-image">
+                                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Digital Media">
+                            </div>
+                            <div class="course-details">
+                                <div class="course-code">IT114214</div>
+                                <div class="course-title">Higher Diploma in Digital Media Technology</div>
+                                <a href="#" class="course-btn">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-image">
+                                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Games and Animation">
+                            </div>
+                            <div class="course-details">
+                                <div class="course-code">IT114206</div>
+                                <div class="course-title">Higher Diploma in Games and Animation</div>
+                                <a href="#" class="course-btn">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-image">
+                                <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Games and Animation Chinese">
+                            </div>
+                            <div class="course-details">
+                                <div class="course-code">IT114206K</div>
+                                <div class="course-title">Higher Diploma in Games and Animation (Chinese)</div>
+                                <a href="#" class="course-btn">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-image">
+                                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Foundation IT">
+                            </div>
+                            <div class="course-details">
+                                <div class="course-code">FS113002N</div>
+                                <div class="course-title">Diploma of Foundation Studies - IT</div>
+                                <a href="#" class="course-btn">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-image">
+                                <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Foundation Digital Media">
+                            </div>
+                            <div class="course-details">
+                                <div class="course-code">FS113002S</div>
+                                <div class="course-title">Diploma of Foundation Studies – Digital Media</div>
+                                <a href="#" class="course-btn">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-category">
+                    <h3>Part Time</h3>
+                    <div class="course-grid">
+                        <div class="course-card">
+                            <div class="course-image">
+                                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="ICT">
+                            </div>
+                            <div class="course-details">
+                                <div class="course-code">IT524110</div>
+                                <div class="course-title">Higher Diploma in ICT</div>
+                                <a href="#" class="course-btn">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-image">
+                                <img src="https://images.unsplash.com/photo-1498075702571-ecb018f3752d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Multimedia">
+                            </div>
+                            <div class="course-details">
+                                <div class="course-code">IT524204</div>
+                                <div class="course-title">Higher Diploma in Multimedia and Entertainment</div>
+                                <a href="#" class="course-btn">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-category">
+                    <h3>Top Up Degree</h3>
+                    <div class="course-grid">
+                        <div class="course-card">
+                            <div class="course-image">
+                                <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Digital Media Degree">
+                            </div>
+                            <div class="course-details">
+                                <div class="course-code">BSc (Hons)</div>
+                                <div class="course-title">Digital Media</div>
+                                <a href="#" class="course-btn">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="location" class="location">
+        <div class="container">
+            <h2 class="section-title">Our Location</h2>
+            
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="location-text">
+                        <h3>Conveniently Located</h3>
+                        <p>Our campus is situated in the heart of the technology district, easily accessible by public transportation and major highways.</p>
+                        <p>We're surrounded by leading tech companies, providing our students with excellent networking and internship opportunities.</p>
+                        <p>Visit us today to explore our state-of-the-art facilities and learn more about our programs.</p>
+                        <a href="#contact" class="btn btn-primary">Contact Us</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="map-container">
+                        <!-- Google Maps iframe -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.7462606519117!2d-122.40055538468173!3d37.78733507975728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858085404b4c01%3A0x6f43e4d0a5e9390c!2sSan%20Francisco%2C%20CA%2C%20USA!5e0!3m2!1sen!2s!4v1620151704099!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <div class="footer-section animate-delay-100">
+                        <h3>Tech Academe</h3>
+                        <p>Shaping the future of technology through innovative education and hands-on learning.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <div class="footer-section animate-delay-200">
+                        <h3>Quick Links</h3>
+                        <a href="#home">Home</a>
+                        <a href="#courses">Courses</a>
+                        <a href="#location">Location</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="footer-section animate-delay-300">
+                        <h3>Contact Info</h3>
+                        <p>123 Tech Avenue, Innovation District</p>
+                        <p>Phone: (123) 456-7890</p>
+                        <p>Email: info@techacademe.edu</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 HKIIT at IVE(LWL). All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Intersection Observer for scroll-driven animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        
+                        if (element.classList.contains('section-title') || 
+                            element.classList.contains('category') || 
+                            element.classList.contains('footer-section')) {
+                            element.classList.add('fade-in');
+                        } else if (element.classList.contains('location-text')) {
+                            element.classList.add('fade-in-left');
+                        } else if (element.classList.contains('map-container')) {
+                            element.classList.add('fade-in-right');
+                        } else if (element.classList.contains('copyright')) {
+                            element.style.opacity = 1;
+                        } else if (element.classList.contains('course-card')) {
+                            element.classList.add('visible');
+                        } else if (element.classList.contains('course-category')) {
+                            element.classList.add('visible');
+                        }
+                        
+                        // Once the animation is triggered, we can stop observing this element
+                        observer.unobserve(element);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all elements that need animations
+            document.querySelectorAll('.section-title, .category, .location-text, .map-container, .footer-section, .copyright, .course-card, .course-category').forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Add staggered delay to course cards
+            document.querySelectorAll('.course-card').forEach((card, index) => {
+                card.style.transitionDelay = (index * 0.1) + 's';
+            });
+        });
+    </script>
+</body>
+</html>
